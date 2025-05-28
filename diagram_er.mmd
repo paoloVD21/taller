@@ -1,47 +1,35 @@
 erDiagram
-    PRODUCTO {
-        int id
-        string nombre
-        int cantidad
-    }
-    INVENTARIO {
-        int id
-        date fecha
-        int cantidad
-    }
-    PRODUCTO }o--|| INVENTARIO : pertenece
-    PAIDO {
-        int id
-        date fecha
-        float monto
-    }
-    FORMA_PAGO {
-        int id
-        string tipo
-    }
-    PAIDO }o--|| FORMA_PAGO : utiliza
-    EMPLEADO {
-        int id
-        string rol
-    }
-    PRODUCTO }|--|| EMPLEADO : vende
-    EMPLEADO ||--o{ PAIDO : procesa
-    REPORTE {
-        int id
-        date fecha
-        string descripcion
-    }
-    PRODUCTO }o--|| REPORTE : objeto
-    INVENTARIO }o--|| REPORTE : objeto
     CLIENTE {
         int id
         string nombre
-        string telefono
     }
-    PAIDO }o--|| CLIENTE : cliente
-    TICKE {
+    PRODUCTO {
+        int id
+        string nombre
+        float precio
+    }
+    VENTA {
         int id
         date fecha
+        float total
+    }
+    DETALLE_VENTA {
+        int id
+        int cantidad
+        float subtotal
+    }
+    USUARIO {
+        int id
+        string nombre
+        string rol
+    }
+    PAGO {
+        int id
         float monto
     }
-    PAIDO }o--|| TICKE : relacionado
+    CLIENTE ||--o{ VENTA : realiza
+    VENTA }o--|| PAGO : cancela
+    USUARIO }o--|| VENTA : registra
+    PRODUCTO }|..|| DETALLE_VENTA : tiene
+    VENTA }|..|| DETALLE_VENTA : contiene
+    USUARIO }o--|| PRODUCTO : administra

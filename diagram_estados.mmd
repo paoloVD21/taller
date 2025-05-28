@@ -1,0 +1,32 @@
+stateDiagram-v2
+    [*] --> Inicio
+    Inicio --> RegistroVenta: Solicitud de nueva venta
+    RegistroVenta --> AgregarProducto: Agregar producto a la venta
+    AgregarProducto --> RegistroVenta: Producto agregado
+    RegistroVenta --> CalcularTotal: Fin de agregar productos
+    CalcularTotal --> Pago: Total calculado
+    Pago --> ProcesarPago: Pago recibido
+    ProcesarPago --> Cambio: Pago procesado
+    Cambio --> FinVenta: Cambio entregado
+    FinVenta --> [*]: Venta finalizada
+    
+    Inicio --> MenuAdministrador: Acceso de administrador
+    MenuAdministrador --> AgregarProductoInventario: Agregar nuevo producto
+    AgregarProductoInventario --> MenuAdministrador: Producto agregado al inventario
+    MenuAdministrador --> VerReporteVentas: Solicitud de reporte de ventas
+    VerReporteVentas --> MenuAdministrador: Reporte mostrado
+    MenuAdministrador --> BuscarProducto: Solicitud de búsqueda de producto
+    BuscarProducto --> MenuAdministrador: Resultado de búsqueda mostrado
+    MenuAdministrador --> CambiarPrecio: Solicitud de cambio de precio
+    CambiarPrecio --> MenuAdministrador: Precio actualizado
+    MenuAdministrador --> EliminarProducto: Solicitud de eliminar producto
+    EliminarProducto --> MenuAdministrador: Producto eliminado
+    
+    RegistroVenta --> ConsultarPrecio: Solicitud de consultar precio
+    ConsultarPrecio --> RegistroVenta: Precio mostrado
+    RegistroVenta --> VerListaProductos: Solicitud de ver lista de productos
+    VerListaProductos --> RegistroVenta: Lista mostrada
+    
+    MenuAdministrador --> Autenticacion: Solicitud de acceso seguro
+    Autenticacion --> MenuAdministrador: Acceso concedido
+    Autenticacion --> [*]: Acceso denegado

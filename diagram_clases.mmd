@@ -1,48 +1,64 @@
 classDiagram
-    class Administrador {
-        +id: Int
+    class Usuario {
         +nombre: String
-        +gestionarInventario()
-        +crearPrecio()
-        +visualizarReportes()
+        +login()
     }
     class Cajero {
-        +id: Int
-        +nombre: String
-        +procesarPago()
-        +generarTicket()
+        -idCajero: Int
+        +ingresarCompra()
+        +calcularTotal()
+        +recibirPago()
+        +darCambio()
+        +consultarPrecio()
+        +mostrarListaProductos()
+    }
+    class Administrador {
+        -idAdministrador: Int
+        +agregarProducto()
+        +verReporteVentas()
         +buscarProducto()
+        +cambiarPrecio()
+        +eliminarProducto()
     }
+    Usuario <|-- Cajero
+    Usuario <|-- Administrador
+    
     class Producto {
-        +id: Int
-        +nombre: String
-        +precio: Float
-        -existencia: Int
-        +editarPrecio()
+        -idProducto: Int
+        -nombre: String
+        -precio: Double
+        +getPrecio(): Double
+        +setPrecio()
     }
-    class Pago {
-        +tipo: String
-        +montox: Float
+    class Venta {
+        -idVenta: Int
+        -total: Double
+        -fecha: String
+        +calcularTotal()
+        +getTotal(): Double
     }
-    class Ticket {
-        +id: Int
-        +fecha: Date
-        +total: Float
+    class Compra {
+        -idCompra: Int
+        -cantidad: Int
+        -subtotal: Double
     }
-    class Reporte {
-        +tipo: String
-        +descripción: String
+    class Inventario {
+        -listaProductos: List~Producto~
+        +agregarProducto()
+        +eliminarProducto()
+        +buscarProducto()
+        +actualizarPrecio()
     }
-    Administrador <|-- Cajero
-    Cajero --* Pago
-    Pago --* Ticket
-    Administrador *-- Reporte
-    Cajero *-- Ticket
-    Administrador --* Producto
-    Cajero --* Producto
-    Producto --* Pago
-    Ticket --* Producto
-    Administrador o-- Reporte : contiene
-    Cajero o-- Ticket : genera
-    Administrador *-- Producto : gestiona
-    Cajero *-- Producto : vende
+    Administrador -- Inventario : gestiona
+    Cajero -- Venta : realiza
+    Venta *-- Compra : contiene 1..*
+    Compra o-- Producto : incluye 1
+    Inventario o-- Producto : almacena 0..*
+    
+    class Cuenta {
+        +usuario: String
+        +password: String
+        +autenticar()
+    }
+    Administrador -- Cuenta : tiene 1
+```

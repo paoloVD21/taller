@@ -1,21 +1,31 @@
 flowchart TD
-    A[Inicio] -->|Acceder| B[Administrador: Administrar inventario]
-    B --> C{¿Necesidad de reabastecimiento?}
-    C -->|Sí| D[Administrador: Ordenar stock]
-    C -->|No| E[Continuar]
-    E --> F[Administrador: Crear/editar precios y promociones]
-    F --> G{¿Necesidad de reporte?}
-    G -->|Sí| H[Administrador: Visualizar reportes y descripciones de inventario]
-    G -->|No| I[Continuar]
-    I --> J[Cajero: Procesar pagos]
-    J --> K{¿Forma de pago?}
-    K -->|Tarjeta| L[Procesar tarjeta de crédito]
-    K -->|Efectivo| M[Recibir efectivo]
-    L --> N[Generar ticket]
-    M --> N
-    N --> O[Entregar compra]
-    O --> P{¿Necesidad de buscar producto?}
-    P -->|Sí| Q[Cajero: Buscar producto]
-    P -->|No| R[Fin]
-    Q --> S[Seleccionar producto]
-    S --> R[Fin]
+    A[Inicio] --> B{¿Quién eres?}
+    B -->|Cajero| C[Mostrar lista de productos]
+    C --> D[Ingresar compra del cliente]
+    D --> E[Calcular total de la compra]
+    E --> F[Recibir pago del cliente]
+    F --> G{¿El pago es suficiente?}
+    G -->|Sí| H[Dar cambio al cliente]
+    G -->|No| I[Informar al cliente que el pago es insuficiente]
+    I --> F
+    H --> J[Completar venta]
+    J --> K[Fin]
+    B -->|Administrador| L{¿Qué deseas hacer?}
+    L -->|Agregar nuevo producto| M[Agregar producto al inventario]
+    L -->|Ver reporte de ventas diarias| N[Mostrar reporte de ventas]
+    L -->|Buscar producto| O[Buscar producto en el inventario]
+    L -->|Cambiar precio de producto| P[Cambiar precio del producto]
+    L -->|Eliminar producto| Q[Eliminar producto del inventario]
+    L -->|Iniciar sesión| R[Verificar credenciales]
+    R --> S{¿Credenciales válidas?}
+    S -->|Sí| L
+    S -->|No| T[Informar error de credenciales]
+    T --> K
+    M --> K
+    N --> K
+    O --> K
+    P --> K
+    Q --> K
+    C --> U[Consultar precio de un producto]
+    U --> K
+    D --> K

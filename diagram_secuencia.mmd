@@ -1,0 +1,45 @@
+sequenceDiagram
+    participant Cajero as "Cajero"
+    participant Administrador as "Administrador"
+    participant Sistema as "Sistema"
+    participant Producto as "Producto"
+
+    Cajero->>Sistema: Ingresar compra del cliente (HU1)
+    Sistema->>Producto: Buscar precio del producto (HU10)
+    Producto-->>Sistema: Retornar precio del producto
+    Sistema->>Sistema: Calcular total de la compra (HU2)
+    Sistema-->>Cajero: Mostrar total de la compra
+
+    Cajero->>Sistema: Recibir pago del cliente (HU3)
+    Sistema->>Sistema: Calcular cambio (HU4)
+    Sistema-->>Cajero: Mostrar cambio
+
+    Cajero->>Sistema: Consultar lista de productos (HU11)
+    Sistema->>Producto: Listar productos disponibles
+    Producto-->>Sistema: Retornar lista de productos
+    Sistema-->>Cajero: Mostrar lista de productos
+
+    Administrador->>Sistema: Solicitar inicio de sesión (HU12)
+    Sistema->>Administrador: Verificar credenciales
+    Sistema-->>Administrador: Acceder al sistema
+
+    Administrador->>Sistema: Agregar nuevo producto (HU5)
+    Sistema->>Producto: Agregar nuevo producto
+    Producto-->>Sistema: Confirmar agregación
+
+    Administrador->>Sistema: Ver reporte de ventas diarias (HU6)
+    Sistema->>Sistema: Generar reporte de ventas
+    Sistema-->>Administrador: Mostrar reporte de ventas
+
+    Administrador->>Sistema: Buscar productos (HU7)
+    Sistema->>Producto: Buscar productos
+    Producto-->>Sistema: Retornar resultados de búsqueda
+    Sistema-->>Administrador: Mostrar resultados de búsqueda
+
+    Administrador->>Sistema: Cambiar precio de producto (HU8)
+    Sistema->>Producto: Actualizar precio del producto
+    Producto-->>Sistema: Confirmar actualización
+
+    Administrador->>Sistema: Eliminar producto del inventario (HU9)
+    Sistema->>Producto: Eliminar producto
+    Producto-->>Sistema: Confirmar eliminación
