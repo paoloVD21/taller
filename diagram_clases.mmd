@@ -1,0 +1,48 @@
+classDiagram
+    class Administrador {
+        +id: Int
+        +nombre: String
+        +gestionarInventario()
+        +crearPrecio()
+        +visualizarReportes()
+    }
+    class Cajero {
+        +id: Int
+        +nombre: String
+        +procesarPago()
+        +generarTicket()
+        +buscarProducto()
+    }
+    class Producto {
+        +id: Int
+        +nombre: String
+        +precio: Float
+        -existencia: Int
+        +editarPrecio()
+    }
+    class Pago {
+        +tipo: String
+        +montox: Float
+    }
+    class Ticket {
+        +id: Int
+        +fecha: Date
+        +total: Float
+    }
+    class Reporte {
+        +tipo: String
+        +descripción: String
+    }
+    Administrador <|-- Cajero
+    Cajero --* Pago
+    Pago --* Ticket
+    Administrador *-- Reporte
+    Cajero *-- Ticket
+    Administrador --* Producto
+    Cajero --* Producto
+    Producto --* Pago
+    Ticket --* Producto
+    Administrador o-- Reporte : contiene
+    Cajero o-- Ticket : genera
+    Administrador *-- Producto : gestiona
+    Cajero *-- Producto : vende
