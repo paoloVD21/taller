@@ -1,0 +1,23 @@
+flowchart TD
+    A[Inicio] -->|Cajero inicia sesión| B[Cajero registra venta]
+    B --> C{¿Hay productos en la venta?}
+    C -->|Sí| D[Generar factura y total de venta]
+    C -->|No| E[Buscar productos]
+    D --> F[Imprimir lista de pedidos pendientes]
+    E --> G[Búsqueda de productos concluida]
+    G --> H{¿Hay descuentos o cupones aplicables?}
+    H -->|Sí| I[Aplicar descuentos o cupones]
+    H -->|No| J[Venta concluida]
+    I --> J
+    B --> K{¿Necesita agregar nuevo producto?}
+    K -->|Sí| L[Administrador agrega nuevo producto]
+    K -->|No| J
+    L --> M[Actualizar stock de productos]
+    M --> N{¿Necesita verificar stock de productos?}
+    N -->|Sí| O[Verificar stock de productos]
+    N -->|No| J
+    O --> P[Historial de ventas]
+    P --> Q{¿Necesita recibir notificación de venta?}
+    Q -->|Sí| R[Enviar notificación de venta]
+    Q -->|No| J
+    J --> S[Fin]

@@ -1,0 +1,3 @@
+[console_scripts]
+test=metabase_query_checker.collection_graph:start
+

@@ -1,0 +1,14 @@
+
+El diagrama de flujo comienza con el nodo Inicio, seguido de la acción del Dueño, quien se encarga de agregar un producto. 
+A continuación, se evalúa si el producto fue agregado correctamente, lo que lleva al Administrador a gestionar el pedido. 
+Luego, se verifica si dicho pedido fue gestionado, permitiendo al Provedor proceder con el envío del pedido.
+
+En paralelo, si el producto no fue agregado o se presentan otras situaciones, el Vendedor puede realizar una transacción, 
+lo cual conduce a verificar si la transacción fue realizada con éxito. En caso contrario, el Administrador puede crear un usuario.
+
+Posteriormente, el flujo contempla la decisión de si el pedido fue enviado, lo que da paso a que el Administrador configure 
+la seguridad del sistema. Además, el Provedor puede consultar el estado de los pedidos, y el Vendedor tiene la opción de 
+modificar el stock disponible.
+
+Como parte del seguimiento del negocio, el Dueño puede ver reportes y generar informes, concluyendo el proceso con el nodo Fin.
+
